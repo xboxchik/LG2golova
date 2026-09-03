@@ -1,54 +1,33 @@
-/* ==========================================
-   1. ОСНОВНІ НАЛАШТУВАННЯ ТА ЗМІННІ
-   ========================================== */
-:root {
-    --bg-color: #0f0f12;
-    --card-bg: #18181c;
-    --accent-color: #6c5ce7;
-    --accent-hover: #5b4bc4;
-    --text-main: #ffffff;
-    --text-muted: #a0a0a0;
-    --border-color: #2a2a32;
-    --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    --transition: all 0.3s ease;
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
-    overflow-x: hidden;
+    background: #0f172a;
+    color: #fff;
+    padding-bottom: 50px;
 }
 
-/* ==========================================
-   2. ШАПКА САЙТУ (HEADER & NAV)
-   ========================================== */
+/* HEADER */
+
 header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    background: #1e293b;
+    padding: 15px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
-    background-color: rgba(15, 15, 18, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent-color);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #38bdf8;
 }
 
 nav {
@@ -58,227 +37,167 @@ nav {
 }
 
 nav a {
-    color: var(--text-main);
+    color: #fff;
     text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
+    transition: 0.3s;
 }
 
 nav a:hover {
-    color: var(--accent-color);
+    color: #38bdf8;
 }
 
-/* Випадаюче меню каталогу */
+/* CATALOG DROPDOWN */
+
 .catalog-wrapper {
     position: relative;
 }
 
 .catalog-btn {
-    background: none;
+    background: #334155;
+    color: white;
     border: none;
-    color: var(--text-main);
-    font-size: 1rem;
-    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
     cursor: pointer;
-    padding: 5px 10px;
-    transition: var(--transition);
+    font-size: 14px;
 }
 
 .catalog-btn:hover {
-    color: var(--accent-color);
+    background: #475569;
 }
 
 .catalog-menu {
-    display: none;
     position: absolute;
-    top: 100%;
+    top: 110%;
     left: 0;
-    background-color: var(--card-bg);
-    min-width: 180px;
-    box-shadow: var(--shadow);
+    background: #1e293b;
     border-radius: 8px;
-    border: 1px solid var(--border-color);
+    display: none;
+    flex-direction: column;
+    width: 180px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     overflow: hidden;
-    z-index: 10;
+    z-index: 200;
 }
 
 .catalog-menu.show {
-    display: block;
-    animation: fadeIn 0.2s ease;
+    display: flex;
 }
 
 .menu-link {
-    display: block;
     padding: 10px 15px;
-    color: var(--text-main);
+    color: white;
     text-decoration: none;
-    border-bottom: 1px solid var(--border-color);
-    transition: var(--transition);
-}
-
-.menu-link:last-child {
-    border-bottom: none;
+    font-size: 14px;
+    transition: 0.2s;
 }
 
 .menu-link:hover {
-    background-color: var(--accent-color);
-    color: #fff;
+    background: #38bdf8;
+    color: #0f172a;
 }
 
-/* Кнопка кошика */
+/* CART BUTTON */
+
 .cart-btn {
-    background-color: var(--accent-color);
-    color: #fff;
+    background: #38bdf8;
+    color: #0f172a;
     border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 8px 14px;
+    border-radius: 6px;
     cursor: pointer;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: var(--transition);
+    font-weight: bold;
 }
 
-.cart-btn:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-}
+/* HERO SECTION */
 
-#cartCount {
-    background-color: #fff;
-    color: var(--accent-color);
-    padding: 2px 7px;
-    border-radius: 50%;
-    font-size: 0.8rem;
-}
-
-/* ==========================================
-   3. HERO BANNERS (ГОЛОВНИЙ БАНЕР)
-   ========================================== */
 .hero {
-    padding: 80px 5%;
     text-align: center;
-    background: linear-gradient(180deg, rgba(108, 92, 231, 0.15) 0%, rgba(15, 15, 18, 1) 100%);
-    border-bottom: 1px solid var(--border-color);
-}
-
-.hero-content {
-    max-width: 700px;
-    margin: 0 auto;
+    padding: 60px 20px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 40px;
     margin-bottom: 15px;
-    color: var(--text-main);
 }
 
 .hero p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
+    color: #94a3b8;
     margin-bottom: 25px;
 }
 
 .hero-button {
-    background-color: var(--accent-color);
-    color: #fff;
+    background: #38bdf8;
+    color: #0f172a;
     border: none;
-    padding: 12px 28px;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 12px 24px;
     border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
-    transition: var(--transition);
+    transition: 0.3s;
 }
 
 .hero-button:hover {
-    background-color: var(--accent-hover);
-    box-shadow: 0 0 15px rgba(108, 92, 231, 0.4);
+    background: #0284c7;
+    color: white;
 }
 
-/* ==========================================
-   4. ПОШУК (SEARCH SECTION)
-   ========================================== */
+/* SEARCH */
+
 .search-section {
-    padding: 40px 5% 20px;
     text-align: center;
-}
-
-.search-section h2 {
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-}
-
-.search-box {
-    max-width: 500px;
-    margin: 0 auto;
+    margin: 30px 0;
 }
 
 .search-box input {
-    width: 100%;
-    padding: 12px 20px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 25px;
-    color: var(--text-main);
-    font-size: 1rem;
+    width: 300px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: white;
     outline: none;
-    transition: var(--transition);
 }
 
-.search-box input:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 10px rgba(108, 92, 231, 0.3);
-}
+/* PRODUCTS GRID */
 
-/* ==========================================
-   5. СІТКА КАРТОК (PRODUCTS & GRID)
-   ========================================== */
 .products {
-    padding: 20px 5% 60px;
+    padding: 0 40px;
 }
 
 .section-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-}
-
-#categoryTitle {
-    color: var(--accent-color);
-    font-weight: 600;
+    margin-bottom: 20px;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 25px;
 }
 
-/* Картка гри */
+/* CARD */
+
 .card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background: #1e293b;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: var(--transition);
+    transition: 0.3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: var(--accent-color);
-    box-shadow: var(--shadow);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
 .card img {
     width: 100%;
-    height: 140px;
+    height: 130px;
     object-fit: cover;
 }
 
@@ -289,38 +208,30 @@ nav a:hover {
     flex-grow: 1;
 }
 
-.card-content .category {
-    font-size: 0.75rem;
+.category {
+    font-size: 12px;
+    color: #38bdf8;
     text-transform: uppercase;
-    color: var(--accent-color);
-    font-weight: 700;
-    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .card-content h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin: 5px 0 10px;
+    font-size: 18px;
 }
 
 .game-description {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    font-size: 13px;
+    color: #94a3b8;
     margin-bottom: 15px;
     flex-grow: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .price {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #2ecc71;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #4ade80;
 }
 
 .card-buttons {
@@ -329,54 +240,46 @@ nav a:hover {
 }
 
 .add-cart {
-    flex: 1;
-    background-color: var(--accent-color);
-    color: #fff;
+    background: #38bdf8;
+    color: #0f172a;
     border: none;
-    padding: 8px 0;
+    padding: 8px;
     border-radius: 6px;
-    font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    font-weight: bold;
+    flex: 1;
 }
 
 .add-cart:hover {
-    background-color: var(--accent-hover);
+    background: #0284c7;
+    color: white;
 }
 
 .download {
-    flex: 1;
-    background-color: transparent;
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    text-align: center;
+    background: #334155;
+    color: white;
     text-decoration: none;
-    padding: 8px 0;
+    padding: 8px;
     border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    line-height: 1.2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
+    text-align: center;
+    font-size: 14px;
+    flex: 1;
+    display: inline-block;
 }
 
 .download:hover {
-    border-color: var(--text-main);
-    background-color: rgba(255, 255, 255, 0.05);
+    background: #475569;
 }
 
-/* ==========================================
-   6. КОШИК (CART OVERLAY & ASIDE)
-   ========================================== */
+/* CART OVERLAY */
+
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,0.7);
     display: none;
     justify-content: flex-end;
     z-index: 1000;
@@ -387,156 +290,69 @@ nav a:hover {
 }
 
 .cart {
-    width: 100%;
-    max-width: 400px;
+    background: #1e293b;
+    width: 350px;
     height: 100%;
-    background-color: var(--card-bg);
-    padding: 25px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     position: relative;
-    box-shadow: var(--shadow);
-    animation: slideLeft 0.3s ease;
 }
 
 .close {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     background: none;
     border: none;
-    color: var(--text-main);
-    font-size: 1.5rem;
+    color: white;
+    font-size: 20px;
     cursor: pointer;
-}
-
-.cart h2 {
-    margin-bottom: 20px;
 }
 
 #cartItems {
     flex-grow: 1;
+    margin-top: 20px;
     overflow-y: auto;
-    margin-bottom: 20px;
-}
-
-.empty-cart {
-    color: var(--text-muted);
-    text-align: center;
-    margin-top: 50px;
-}
-
-/* Стилі для елемента в кошику */
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.cart-item-info h4 {
-    font-size: 0.95rem;
-}
-
-.cart-item-info span {
-    color: #2ecc71;
-    font-size: 0.85rem;
-}
-
-.remove-item {
-    background: none;
-    border: none;
-    color: #e74c3c;
-    cursor: pointer;
-    font-size: 1.1rem;
 }
 
 .cart-bottom {
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid #334155;
     padding-top: 15px;
 }
 
 .total {
     display: flex;
     justify-content: space-between;
-    font-size: 1.2rem;
-    font-weight: 700;
     margin-bottom: 15px;
+    font-size: 18px;
 }
 
 .clear-cart, .checkout {
     width: 100%;
     padding: 10px;
-    border-radius: 6px;
     border: none;
-    font-weight: 600;
+    border-radius: 6px;
     cursor: pointer;
-    margin-bottom: 10px;
-    transition: var(--transition);
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .clear-cart {
-    background-color: transparent;
-    color: #e74c3c;
-    border: 1px solid #e74c3c;
-}
-
-.clear-cart:hover {
-    background-color: rgba(231, 76, 60, 0.1);
+    background: #ef4444;
+    color: white;
 }
 
 .checkout {
-    background-color: #2ecc71;
-    color: #fff;
+    background: #22c55e;
+    color: white;
 }
 
-.checkout:hover {
-    background-color: #27ae60;
-}
+/* FOOTER */
 
-/* ==========================================
-   7. ПІДВАЛ (FOOTER) ТА АНІМАЦІЇ
-   ========================================== */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #09090b;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    border-top: 1px solid var(--border-color);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideLeft {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
-}
-
-/* ==========================================
-   8. АДАПТИВНІСТЬ (RESPONSIVE DESIGN)
-   ========================================== */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
+    margin-top: 50px;
+    color: #64748b;
+    font-size: 14px;
 }
