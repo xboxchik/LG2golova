@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111111">
+    <meta name="description" content="LogiGamer 2.0 — каталог із 20 найкращих головоломок та мозаїк. Завантажуй топові ігри за вигідними цінами!">
+    <title>LogiGamer 2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">LogiGamer 2.0</div>
+
+    <nav>
+        <a href="#home">Головна</a>
+
+        <div class="catalog-wrapper">
+            <button class="catalog-btn" id="catalogBtn" type="button">
+                Каталог ▾
+            </button>
+
+            <div class="catalog-menu" id="catalogMenu">
+                <a href="https://xboxchik.github.io/LG2/" class="menu-link">🎮 Всі ігри</a>
+                <a href="https://xboxchik.github.io/LG2ekshn/" class="menu-link">⚔️ Екшн</a>
+                <a href="https://xboxchik.github.io/LG2rpg/" class="menu-link">🧙 RPG</a>
+                <a href="https://xboxchik.github.io/LG2strategi/" class="menu-link">♟️ Стратегії</a>
+                <a href="https://xboxchik.github.io/LG2simulator/" class="menu-link">🚗 Симулятори</a>
+                <a href="https://xboxchik.github.io/LG2prugody/" class="menu-link">🗺️ Пригоди</a>
+                <a href="https://xboxchik.github.io/LG2arcade/" class="menu-link">👾 Аркади</a>
+                <a href="https://xboxchik.github.io/LG2golova/" class="menu-link">🧩 Головоломки</a>
+            </div>
+        </div>
+
+        <a href="#games">Ігри</a>
+
+        <a
+            href="https://t.me/LogiGamerbot"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Допомога
+        </a>
+
+        <button class="cart-btn" id="cartBtn" type="button">
+            🛒 Кошик
+            <span id="cartCount">0</span>
+        </button>
+    </nav>
+</header>
+
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>LogiGamer 2.0</h1>
+
+        <p>
+            LogiGamer 2.0 — нова версія сайту.
+            Тут ти знайдеш найкращі логічні ігри, розбуди свій інтелект!
+        </p>
+
+        <button
+            class="hero-button"
+            id="letsGo"
+            type="button"
+        >
+           Давай створимо тобі нову версію геймінгу!
+        </button>
+    </div>
+</section>
+
+
+<section class="search-section">
+    <h2>Знайти головоломку</h2>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Введи назву головоломки..."
+            autocomplete="off"
+        >
+    </div>
+</section>
+
+
+<section class="products" id="games">
+
+    <div class="section-title">
+        <h2>Каталог головоломок</h2>
+
+        <div id="categoryTitle">
+            Головоломки (Топ-20)
+        </div>
+    </div>
+
+
+    <div class="grid" id="gamesGrid">
+
+        <div class="card" data-name="Portal 2" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/620/header.jpg"
+                alt="Portal 2"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Portal 2</h3>
+                <p class="game-description">Культова головоломка від першої особи з портальною гарматою, фізикою та чорним гумором.</p>
+                <div class="price">225 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Portal 2"
+                        data-price="225"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/620/Portal_2/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="The Talos Principle 2" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/835960/header.jpg"
+                alt="The Talos Principle 2"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>The Talos Principle 2</h3>
+                <p class="game-description">Філософська головоломка про роботів, лазери та майбутнє людства у загадковому світі.</p>
+                <div class="price">600 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="The Talos Principle 2"
+                        data-price="600"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/835960/The_Talos_Principle_2/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Baba Is You" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/736260/header.jpg"
+                alt="Baba Is You"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Baba Is You</h3>
+                <p class="game-description">Унікальна гра, де правила рівня записані блоками — змінюй правила, щоб виграти!</p>
+                <div class="price">225 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Baba Is You"
+                        data-price="225"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/736260/Baba_Is_You/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="The Witness" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/210970/header.jpg"
+                alt="The Witness"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>The Witness</h3>
+                <p class="game-description">Досліджуй мальовничий острів та розгадуй сотні складних лабіринтів і панелей.</p>
+                <div class="price">479 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="The Witness"
+                        data-price="479"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/210970/The_Witness/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Superliminal" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1049410/header.jpg"
+                alt="Superliminal"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Superliminal</h3>
+                <p class="game-description">Головоломка від першої особи, що базується на оптичних ілюзіях та перспективі.</p>
+                <div class="price">279 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Superliminal"
+                        data-price="279"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/1049410/Superliminal/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Viewfinder" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1382070/header.jpg"
+                alt="Viewfinder"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Viewfinder</h3>
+                <p class="game-description">Змінюй реальність за допомогою миттєвого фотоапарата, втілюючи знімки у життя.</p>
+                <div class="price">415 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Viewfinder"
+                        data-price="415"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/1382070/Viewfinder/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Tetris Effect: Connected" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1444440/header.jpg"
+                alt="Tetris Effect: Connected"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Tetris Effect: Connected</h3>
+                <p class="game-description">Неймовірне переосмислення класичного Тетріса з приголомшливим візуалом та музикою.</p>
+                <div class="price">515 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Tetris Effect: Connected"
+                        data-price="515"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/1444440/Tetris_Effect_Connected/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Unpacking" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1135690/header.jpg"
+                alt="Unpacking"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Unpacking</h3>
+                <p class="game-description">Медитативна піксельна гра про розпакування коробок і розставляння речей по домівках.</p>
+                <div class="price">279 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Unpacking"
+                        data-price="279"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/1135690/Unpacking/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Monument Valley" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1920290/header.jpg"
+                alt="Monument Valley"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Monument Valley</h3>
+                <p class="game-description">Керуй принцесою крізь сюрреалістичну архітектуру та неможливі геометричні фігури.</p>
+                <div class="price">169 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Monument Valley"
+                        data-price="169"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/1920290/Monument_Valley_Panorama_Edition/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="FEZ" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/224760/header.jpg"
+                alt="FEZ"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>FEZ</h3>
+                <p class="game-description">Перевертай 2D-світ у 3D-просторі, щоб знайти секрети та відновити гармонію Всесвіту.</p>
+                <div class="price">225 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="FEZ"
+                        data-price="225"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/224760/FEZ/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Gorogoa" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/558080/header.jpg"
+                alt="Gorogoa"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Gorogoa</h3>
+                <p class="game-description">Витончена головоломка із намальованими вручну картами, які потрібно комбінувати.</p>
+                <div class="price">225 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Gorogoa"
+                        data-price="225"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/558080/Gorogoa/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="The Room 4: Old Sins" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1361510/header.jpg"
+                alt="The Room 4: Old Sins"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>The Room 4: Old Sins</h3>
+                <p class="game-description">Досліджуй деталізовані лялькові будиночки, розгадуючи складні механічні замки.</p>
+                <div class="price">169 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="The Room 4: Old Sins"
+                        data-price="169"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/1361510/The_Room_4_Old_Sins/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="World of Goo" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22000/header.jpg"
+                alt="World of Goo"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>World of Goo</h3>
+                <p class="game-description">Будуй мости, вежі та складні конструкції із живих липких кульок Гу.</p>
+                <div class="price">225 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="World of Goo"
+                        data-price="225"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/22000/World_of_Goo/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Braid" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/497180/header.jpg"
+                alt="Braid"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Braid: Anniversary Edition</h3>
+                <p class="game-description">Живописний платформер-головоломка, де ти можеш керувати часом та відмотувати його назад.</p>
+                <div class="price">415 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Braid"
+                        data-price="415"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/497180/Braid_Anniversary_Edition/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Return of the Obra Dinn" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/653530/header.jpg"
+                alt="Return of the Obra Dinn"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Return of the Obra Dinn</h3>
+                <p class="game-description">Детективна пригода-головоломка: з’ясуй долю 60 членів екіпажу зниклого корабля.</p>
+                <div class="price">279 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Return of the Obra Dinn"
+                        data-price="279"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/653530/Return_of_the_Obra_Dinn/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Patrick's Parabox" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1260520/header.jpg"
+                alt="Patrick's Parabox"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Patrick's Parabox</h3>
+                <p class="game-description">Рекурсивна головоломка про штовхання коробок усередину інших коробок та вихід із них.</p>
+                <div class="price">279 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Patrick's Parabox"
+                        data-price="279"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/1260520/Patricks_Parabox/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Chants of Sennaar" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1931770/header.jpg"
+                alt="Chants of Sennaar"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Chants of Sennaar</h3>
+                <p class="game-description">Розгадуй стародавні мови, розшифровуй гліфи та об'єднай народи Вежі.</p>
+                <div class="price">415 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Chants of Sennaar"
+                        data-price="415"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/1931770/Chants_of_Sennaar/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Opus Magnum" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/558990/header.jpg"
+                alt="Opus Magnum"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Opus Magnum</h3>
+                <p class="game-description">Алхімічна симуляція-головоломка: проектуй та будуй складні механізми для створення зілля.</p>
+                <div class="price">279 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Opus Magnum"
+                        data-price="279"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/558990/Opus_Magnum/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Limbo" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/48000/header.jpg"
+                alt="Limbo"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Limbo</h3>
+                <p class="game-description">Похмурий платформер-головоломка про хлопчика, який шукає свою сестру у небезпечному світі.</p>
+                <div class="price">150 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Limbo"
+                        data-price="150"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/48000/LIMBO/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" data-name="Inside" data-category="puzzle">
+            <img
+                src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/304430/header.jpg"
+                alt="Inside"
+            >
+
+            <div class="card-content">
+                <span class="category">Головоломки</span>
+                <h3>Inside</h3>
+                <p class="game-description">Атмосферна та напружена головоломка від творців Limbo з чудовою фізикою та сюжетом.</p>
+                <div class="price">299 ₴</div>
+
+                <div class="card-buttons">
+                    <button
+                        class="add-cart"
+                        data-name="Inside"
+                        data-price="299"
+                    >
+                        🛒 В кошик
+                    </button>
+
+                    <a
+                        class="download"
+                        href="https://store.steampowered.com/app/304430/INSIDE/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Скачати
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<div class="overlay" id="cartOverlay">
+
+    <aside class="cart">
+
+        <button
+            class="close"
+            id="closeCart"
+            type="button"
+        >
+            ✕
+        </button>
+
+        <h2>🛒 Кошик</h2>
+
+        <div id="cartItems">
+            <p class="empty-cart">
+                🛒 Кошик порожній
+            </p>
+        </div>
+
+        <div class="cart-bottom">
+
+            <div class="total">
+                <span>Разом:</span>
+
+                <strong id="cartTotal">
+                    0₴
+                </strong>
+            </div>
+
+            <button
+                class="clear-cart"
+                id="clearCart"
+                type="button"
+            >
+                Очистити кошик
+            </button>
+
+            <button
+                class="checkout"
+                id="checkout"
+                type="button"
+            >
+                Оформити замовлення
+            </button>
+
+        </div>
+
+    </aside>
+</div>
+
+
+<footer>
+    © 2026 LogiGamer — Усі права захищені
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
