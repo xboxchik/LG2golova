@@ -1,241 +1,892 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-    /* ================================================
-       1. ЕЛЕМЕНТИ DOM
-    ================================================ */
-    const catalogBtn = document.getElementById('catalogBtn');
-    const catalogMenu = document.getElementById('catalogMenu');
-    
-    const cartBtn = document.getElementById('cartBtn');
-    const closeCartBtn = document.getElementById('closeCart');
-    const cartOverlay = document.getElementById('cartOverlay');
-    const cartItemsContainer = document.getElementById('cartItems');
-    const cartCount = document.getElementById('cartCount');
-    const cartTotal = document.getElementById('cartTotal');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-
-    const searchInput = document.getElementById('searchInput');
-    const gamesGrid = document.getElementById('gamesGrid');
-    const gameCards = document.querySelectorAll('.card');
-    const categoryTitle = document.getElementById('categoryTitle');
-
-    const letsGoBtn = document.getElementById('letsGo');
-
-    // Масив для збереження товарів у кошику (зчитуємо з localStorage або створюємо порожній)
-    let cart = JSON.parse(localStorage.getItem('logiGamerCart')) || [];
+// ========================================
+// LOGIGAMER 2.0
+// ========================================
 
 
-    /* ================================================
-       2. ВИНАДАЮЧЕ МЕНЮ (КАТАЛОГ)
-    ================================================ */
-    if (catalogBtn && catalogMenu) {
-        // Перемикання видимості меню при кліку на кнопку "Каталог"
-        catalogBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            catalogMenu.classList.toggle('active');
-        });
+// ========================================
+// ELEMENTS
+// ========================================
 
-        // Закриття меню при кліку в будь-якому іншому місці екрана
-        document.addEventListener('click', (e) => {
-            if (!catalogWrapperContains(e.target)) {
-                catalogMenu.classList.remove('active');
-            }
-        });
-    }
+const catalogBtn = document.getElementById("catalogBtn");
+const catalogMenu = document.getElementById("catalogMenu");
 
-    function catalogWrapperContains(target) {
-        const wrapper = document.querySelector('.catalog-wrapper');
-        return wrapper && wrapper.contains(target);
-    }
+const searchInput = document.getElementById("searchInput");
+
+const cartBtn = document.getElementById("cartBtn");
+const cartOverlay = document.getElementById("cartOverlay");
+const closeCart = document.getElementById("closeCart");
+const cartItems = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const cartTotal = document.getElementById("cartTotal");
+const clearCart = document.getElementById("clearCart");
+const checkout = document.getElementById("checkout");
 
 
-    /* ================================================
-       3. УПРАВЛІННЯ КОШИКОМ (MODAL & OVERLAY)
-    ================================================ */
-    function openCart() {
-        cartOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Забороняємо прокрутку сторінки при відкритому кошику
-    }
+// ========================================
+// CATALOG
+// ========================================
 
-    function closeCart() {
-        cartOverlay.classList.remove('active');
-        document.body.style.overflow = ''; // Відновлюємо прокрутку
-    }
+if (catalogBtn && catalogMenu) {
 
-    if (cartBtn) cartBtn.addEventListener('click', openCart);
-    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+    catalogBtn.addEventListener("click", function(event) {
 
-    // Закриття кошика при кліку на затемнений оверлей
-    if (cartOverlay) {
-        cartOverlay.addEventListener('click', (e) => {
-            if (e.target === cartOverlay) {
-                closeCart();
-            }
-        });
-    }
+        event.stopPropagation();
 
+        catalogMenu.classList.toggle("active");
 
-    /* ================================================
-       4. ЛОГІКА КОШИКА (ADD, REMOVE, RENDER)
-    ================================================ */
-    
-    // Додавання товару в кошик
-    function addToCart(name, price) {
-        price = parseFloat(price);
-        
-        // Перевіряємо, чи є вже такий товар
-        const existingItem = cart.find(item => item.name === name);
-
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                name: name,
-                price: price,
-                quantity: 1
-            });
-        }
-
-        saveCart();
-        updateCartUI();
-        openCart(); // Відкриваємо кошик після додавання
-    }
-
-    // Видалення товару з кошика
-    function removeFromCart(name) {
-        cart = cart.filter(item => item.name !== name);
-        saveCart();
-        updateCartUI();
-    }
-
-    // Збереження в LocalStorage
-    function saveCart() {
-        localStorage.setItem('logiGamerCart', JSON.stringify(cart));
-    }
-
-    // Оновлення відображення кошика та лічильників
-    function updateCartUI() {
-        // Обчислюємо загальну кількість та суму
-        const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-        // Оновлюємо лічильник у шапці та підсумок у кошику
-        if (cartCount) cartCount.textContent = totalCount;
-        if (cartTotal) cartTotal.textContent = `${totalPrice} ₴`;
-
-        // Рендеримо список товарів
-        if (!cartItemsContainer) return;
-
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = `
-                <p class="empty-cart">🛒 Кошик порожній</p>
-            `;
-            return;
-        }
-
-        cartItemsContainer.innerHTML = '';
-        
-        cart.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'cart-item';
-            
-            itemElement.innerHTML = `
-                <div class="cart-item-info">
-                    <h4>${item.name}</h4>
-                    <p>${item.price} ₴ ${item.quantity > 1 ? `x ${item.quantity}` : ''}</p>
-                </div>
-                <button class="remove-item" data-name="${item.name}" type="button" title="Видалити">
-                    🗑️
-                </button>
-            `;
-
-            cartItemsContainer.appendChild(itemElement);
-        });
-
-        // Додаємо обробники для кнопок видалення
-        const removeButtons = cartItemsContainer.querySelectorAll('.remove-item');
-        removeButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const name = btn.getAttribute('data-name');
-                removeFromCart(name);
-            });
-        });
-    }
-
-    // Події для кнопок "🛒 В кошик" на картках товарів
-    document.addEventListener('click', (e) => {
-        if (e.target && e.target.classList.contains('add-cart')) {
-            const name = e.target.getAttribute('data-name');
-            const price = e.target.getAttribute('data-price');
-            if (name && price) {
-                addToCart(name, price);
-            }
-        }
     });
 
-    // Оформлення замовлення
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            if (cart.length === 0) {
-                alert('Ваш кошик порожній!');
-                return;
+
+    document.addEventListener("click", function(event) {
+
+        if (!event.target.closest(".catalog-wrapper")) {
+
+            catalogMenu.classList.remove("active");
+
+        }
+
+    });
+
+
+    // Закриваємо каталог після натискання
+    // на будь-яке посилання
+    catalogMenu.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", function() {
+
+            catalogMenu.classList.remove("active");
+
+        });
+
+    });
+
+}
+
+
+// ========================================
+// SEARCH
+// ========================================
+
+const cards = document.querySelectorAll(".card");
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", function() {
+
+        const search = this.value
+            .toLowerCase()
+            .trim();
+
+
+        cards.forEach(card => {
+
+            const name =
+                (card.dataset.name || "")
+                .toLowerCase();
+
+
+            if (name.includes(search)) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
             }
 
-            alert('Дякуємо за замовлення! Менеджер зв\'яжеться з вами найближчим часом.');
-            cart = [];
-            saveCart();
-            updateCartUI();
-            closeCart();
         });
+
+    });
+
+}
+
+
+// ========================================
+// CART
+// ========================================
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("logigamerCart")
+    ) || [];
+
+
+// ========================================
+// SAVE CART
+// ========================================
+
+function saveCart() {
+
+    localStorage.setItem(
+        "logigamerCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+// ========================================
+// ADD TO CART
+// ========================================
+
+document
+    .querySelectorAll(".add-cart")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const name =
+                    this.dataset.name;
+
+
+                const price =
+                    Number(
+                        this.dataset.price
+                    );
+
+
+                const existing =
+                    cart.find(
+                        item =>
+                            item.name === name
+                    );
+
+
+                if (existing) {
+
+                    alert(
+                        "Ця гра вже є у кошику!"
+                    );
+
+                    return;
+
+                }
+
+
+                cart.push({
+
+                    name: name,
+                    price: price
+
+                });
+
+
+                saveCart();
+
+                updateCart();
+
+
+                const oldText =
+                    this.textContent;
+
+
+                this.textContent =
+                    "✓ Додано!";
+
+
+                this.style.background =
+                    "#28a745";
+
+
+                setTimeout(() => {
+
+                    this.textContent =
+                        oldText;
+
+                    this.style.background =
+                        "";
+
+                }, 1200);
+
+            }
+        );
+
+    });
+
+
+// ========================================
+// HTML SECURITY
+// ========================================
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+
+    div.textContent = text;
+
+
+    return div.innerHTML;
+
+}
+
+
+// ========================================
+// UPDATE CART
+// ========================================
+
+function updateCart() {
+
+    if (!cartItems) {
+        return;
     }
 
 
-    /* ================================================
-       5. ЖИВИЙ ПОШУК ІГОР
-    ================================================ */
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            let visibleCount = 0;
+    cartItems.innerHTML = "";
 
-            gameCards.forEach(card => {
-                const gameName = card.getAttribute('data-name') ? card.getAttribute('data-name').toLowerCase() : '';
-                
-                if (gameName.includes(query)) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+
+            <p class="empty-cart">
+                🛒 Кошик порожній
+            </p>
+
+        `;
+
+    }
+
+
+    let total = 0;
+
+
+    cart.forEach((item, index) => {
+
+        total += item.price;
+
+
+        const element =
+            document.createElement("div");
+
+
+        element.className =
+            "cart-item";
+
+
+        element.innerHTML = `
+
+            <div class="cart-item-info">
+
+                <h4>
+                    ${escapeHTML(item.name)}
+                </h4>
+
+                <p>
+                    ${item.price}₴
+                </p>
+
+            </div>
+
+
+            <button
+                class="remove-item"
+                data-index="${index}"
+                type="button"
+            >
+                ✕
+            </button>
+
+        `;
+
+
+        cartItems.appendChild(element);
+
+    });
+
+
+    if (cartCount) {
+
+        cartCount.textContent =
+            cart.length;
+
+    }
+
+
+    if (cartTotal) {
+
+        cartTotal.textContent =
+            total + "₴";
+
+    }
+
+
+    document
+        .querySelectorAll(".remove-item")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const index =
+                        Number(
+                            this.dataset.index
+                        );
+
+
+                    cart.splice(
+                        index,
+                        1
+                    );
+
+
+                    saveCart();
+
+                    updateCart();
+
                 }
+            );
+
+        });
+
+}
+
+
+// ========================================
+// OPEN CART
+// ========================================
+
+if (cartBtn && cartOverlay) {
+
+    cartBtn.addEventListener(
+        "click",
+        function() {
+
+            cartOverlay.classList.add(
+                "active"
+            );
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+    );
+
+}
+
+
+// ========================================
+// CLOSE CART
+// ========================================
+
+function closeCartWindow() {
+
+    if (!cartOverlay) {
+        return;
+    }
+
+
+    cartOverlay.classList.remove(
+        "active"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+if (closeCart) {
+
+    closeCart.addEventListener(
+        "click",
+        closeCartWindow
+    );
+
+}
+
+
+if (cartOverlay) {
+
+    cartOverlay.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target ===
+                cartOverlay
+            ) {
+
+                closeCartWindow();
+
+            }
+
+        }
+    );
+
+}
+
+
+// ========================================
+// ESC
+// ========================================
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+
+            if (catalogMenu) {
+
+                catalogMenu.classList.remove(
+                    "active"
+                );
+
+            }
+
+
+            if (
+                cartOverlay &&
+                cartOverlay.classList.contains(
+                    "active"
+                )
+            ) {
+
+                closeCartWindow();
+
+            }
+
+        }
+
+    }
+);
+
+
+// ========================================
+// CLEAR CART
+// ========================================
+
+if (clearCart) {
+
+    clearCart.addEventListener(
+        "click",
+        function() {
+
+            if (cart.length === 0) {
+
+                return;
+
+            }
+
+
+            const confirmed =
+                confirm(
+                    "Очистити весь кошик?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            cart = [];
+
+
+            saveCart();
+
+            updateCart();
+
+        }
+    );
+
+}
+
+
+// ========================================
+// CHECKOUT
+// ========================================
+
+if (checkout) {
+
+    checkout.addEventListener(
+        "click",
+        function() {
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Ваш кошик порожній!"
+                );
+
+                return;
+
+            }
+
+
+            let total = 0;
+
+
+            cart.forEach(item => {
+
+                total += item.price;
+
             });
 
-            // Динамічне оновлення заголовку категорії при пошуку
-            if (categoryTitle) {
-                if (query.length > 0) {
-                    categoryTitle.textContent = `Результати пошуку (${visibleCount})`;
-                } else {
-                    categoryTitle.textContent = 'Головоломки';
-                }
+
+            alert(
+
+                "Дякуємо за замовлення! 🎮\n\n" +
+
+                "Товарів: " +
+                cart.length +
+
+                "\n" +
+
+                "Сума: " +
+                total +
+
+                "₴\n\n" +
+
+                "Це демо-версія LogiGamer."
+
+            );
+
+        }
+    );
+
+}
+
+
+// ========================================
+// HERO BUTTON
+// ========================================
+
+const letsGo =
+    document.getElementById("letsGo");
+
+
+if (letsGo) {
+
+    letsGo.addEventListener(
+        "click",
+        function() {
+
+            const games =
+                document.getElementById(
+                    "games"
+                );
+
+
+            if (games) {
+
+                games.scrollIntoView({
+
+                    behavior: "smooth"
+
+                });
+
             }
-        });
+
+        }
+    );
+
+}
+
+
+// ========================================
+// DARK THEME
+// ========================================
+
+const themeBtn =
+    document.createElement("button");
+
+
+themeBtn.textContent =
+    "🌙";
+
+
+themeBtn.title =
+    "Змінити тему";
+
+
+themeBtn.setAttribute(
+    "aria-label",
+    "Змінити тему"
+);
+
+
+themeBtn.style.position =
+    "fixed";
+
+
+themeBtn.style.bottom =
+    "20px";
+
+
+themeBtn.style.right =
+    "20px";
+
+
+themeBtn.style.width =
+    "50px";
+
+
+themeBtn.style.height =
+    "50px";
+
+
+themeBtn.style.border =
+    "none";
+
+
+themeBtn.style.borderRadius =
+    "50%";
+
+
+themeBtn.style.background =
+    "#111";
+
+
+themeBtn.style.color =
+    "white";
+
+
+themeBtn.style.fontSize =
+    "20px";
+
+
+themeBtn.style.cursor =
+    "pointer";
+
+
+themeBtn.style.zIndex =
+    "1500";
+
+
+themeBtn.style.boxShadow =
+    "0 5px 20px rgba(0,0,0,0.3)";
+
+
+document.body.appendChild(
+    themeBtn
+);
+
+
+// ========================================
+// LOAD THEME
+// ========================================
+
+const savedTheme =
+    localStorage.getItem(
+        "logigamerTheme"
+    );
+
+
+if (savedTheme === "dark") {
+
+    document.body.classList.add(
+        "dark-theme"
+    );
+
+
+    themeBtn.textContent =
+        "☀️";
+
+}
+
+
+// ========================================
+// CHANGE THEME
+// ========================================
+
+themeBtn.addEventListener(
+    "click",
+    function() {
+
+        document.body.classList.toggle(
+            "dark-theme"
+        );
+
+
+        const dark =
+            document.body.classList.contains(
+                "dark-theme"
+            );
+
+
+        if (dark) {
+
+            themeBtn.textContent =
+                "☀️";
+
+
+            localStorage.setItem(
+                "logigamerTheme",
+                "dark"
+            );
+
+        } else {
+
+            themeBtn.textContent =
+                "🌙";
+
+
+            localStorage.setItem(
+                "logigamerTheme",
+                "light"
+            );
+
+        }
+
     }
+);
 
 
-    /* ================================================
-       6. HERO КНОПКА (ПЛАВНИЙ СКРОЛ)
-    ================================================ */
-    if (letsGoBtn) {
-        letsGoBtn.addEventListener('click', () => {
-            const gamesSection = document.getElementById('games');
-            if (gamesSection) {
-                gamesSection.scrollIntoView({ behavior: 'smooth' });
+// ========================================
+// GAME SNOWFLAKES
+// ========================================
+
+function createSnowflake() {
+
+    const flake =
+        document.createElement("div");
+
+
+    flake.textContent =
+        "🎮";
+
+
+    flake.style.position =
+        "fixed";
+
+
+    flake.style.top =
+        "-20px";
+
+
+    flake.style.left =
+        Math.random() *
+        window.innerWidth +
+        "px";
+
+
+    flake.style.fontSize =
+        (
+            Math.random() *
+            20 +
+            10
+        ) + "px";
+
+
+    flake.style.opacity =
+        Math.random();
+
+
+    flake.style.pointerEvents =
+        "none";
+
+
+    flake.style.zIndex =
+        "1";
+
+
+    flake.style.transition =
+        "transform 4s linear, opacity 4s linear";
+
+
+    document.body.appendChild(
+        flake
+    );
+
+
+    setTimeout(() => {
+
+        flake.style.transform =
+            `translateY(${
+                window.innerHeight + 50
+            }px) rotate(360deg)`;
+
+
+        flake.style.opacity =
+            "0";
+
+    }, 50);
+
+
+    setTimeout(() => {
+
+        flake.remove();
+
+    }, 4000);
+
+}
+
+
+setInterval(
+    createSnowflake,
+    300
+);
+
+
+// ========================================
+// MUSIC
+// ========================================
+
+const music =
+    document.getElementById(
+        "bgMusic"
+    );
+
+
+const musicBtn =
+    document.getElementById(
+        "musicBtn"
+    );
+
+
+if (music && musicBtn) {
+
+    musicBtn.addEventListener(
+        "click",
+        function() {
+
+            if (music.paused) {
+
+                music.play()
+                    .then(() => {
+
+                        musicBtn.textContent =
+                            "⏸ Пауза";
+
+                    })
+                    .catch(() => {
+
+                        alert(
+                            "Не вдалося увімкнути музику."
+                        );
+
+                    });
+
+            } else {
+
+                music.pause();
+
+
+                musicBtn.textContent =
+                    "🎵 Увімкнути музику";
+
             }
-        });
-    }
+
+        }
+    );
+
+}
 
 
-    /* ================================================
-       7. ІНІЦІАЛІЗАЦІЯ ПРИ ЗАВАНТАЖЕННІ
-    ================================================ */
-    updateCartUI();
-});
+// ========================================
+// START
+// ========================================
+
+updateCart();
